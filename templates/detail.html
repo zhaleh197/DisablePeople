@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+<a href="{{ url_for('delete', id=persn.id)}}" class="btn btn-danger">
+    Delete
+</a>
+<h3>
+    {{persn.username}}
+    {{persn.email}}
+</h3>
+<small>
+    {{persn.date_created.strftime('%Y-%m-%d')}}
+</small>
+
+{% endblock %}

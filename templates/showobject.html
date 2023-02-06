@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %} 
+<h3> 
+    {{ results.id }}
+    {{ results.classobj }}
+
+</h3>
+<small>
+    {{ results.date_created.strftime('%Y-%m-%d')}}
+    {{ results.img }}
+
+</small>
+
+{% endblock %}
