@@ -4,7 +4,7 @@ from django.conf import settings
 from django.utils.html import mark_safe
 import datetime
 from django_jalali.db import models as jmodels
-
+from django.contrib.auth.models import User
 def get_filename_ext(filepath):
     base_name = os.path.basename(filepath)
     name, ext = os.path.splitext(base_name)
@@ -47,6 +47,7 @@ class Detects(models.Model):
     date2=jmodels.jDateField()
     img = models.ImageField(
          verbose_name="فریم",upload_to=mainproductFile)
+    cameraid= models.ForeignKey(CameraInfo, on_delete=models.CASCADE)
     lightflag=models.BooleanField(verbose_name="چراغ",default=False,null=True,blank=True)
 
     def __str__(self):

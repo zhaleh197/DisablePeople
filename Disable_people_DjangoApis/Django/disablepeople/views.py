@@ -6,6 +6,16 @@ from rest_framework.response import Response
 from .serializers import *
 from .models import *
 from django.db.models.query_utils import Q
+from django.shortcuts import render, redirect
+from django.contrib.auth import authenticate, login
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import AuthenticationForm
+from rest_framework.permissions import IsAuthenticated
+
+
+
+
+
 
 @api_view(['GET', 'POST'])
 def dectect_list(request):
@@ -31,7 +41,7 @@ def dectect_list(request):
 #222222222222222222222222222222222
 
 @api_view(['POST'])
-@permission_classes([AllowAny])
+@permission_classes([IsAuthenticated])
 def date_filter(request):
     mylist=[]
     samecodelist=[]
@@ -50,7 +60,7 @@ def date_filter(request):
 
 
 @api_view(['GET'])
-@permission_classes([AllowAny])
+@permission_classes([IsAuthenticated])
 def mydate_filter(request):
    
     orders=Detects.objects.filter(classobj=0).values()
@@ -59,7 +69,7 @@ def mydate_filter(request):
     return Response(ser.data, status=status.HTTP_200_OK) 
 
 @api_view(['GET'])
-@permission_classes([AllowAny])
+@permission_classes([IsAuthenticated])
 def area(request):
     if request.method == 'GET':
         all_data = AreaModel.objects.all()
@@ -71,7 +81,7 @@ def area(request):
 
 
 @api_view(['GET'])
-@permission_classes([AllowAny])
+@permission_classes([IsAuthenticated])
 def camera(request):
     if request.method == 'GET':
         all_data = CameraInfo.objects.all()
@@ -83,7 +93,7 @@ def camera(request):
 
 
 @api_view(['GET'])
-@permission_classes([AllowAny])
+@permission_classes([IsAuthenticated])
 def category(request):
     if request.method == 'GET':
         all_data = CategoryModel.objects.all()
@@ -95,7 +105,7 @@ def category(request):
 
 
 @api_view(['GET'])
-@permission_classes([AllowAny])
+@permission_classes([IsAuthenticated])
 def factory(request):
     if request.method == 'GET':
         all_data = FactoryModel.objects.all()
@@ -107,7 +117,7 @@ def factory(request):
 
 
 @api_view(['GET', 'POST'])
-@permission_classes([AllowAny])
+@permission_classes([IsAuthenticated])
 def factory_image(request):
     if request.method == 'POST':
         data = request.data
@@ -123,3 +133,26 @@ def factory_image(request):
             return Response(data, status=status.HTTP_200_OK)
         else:
             return Response("دیتا موجود نیست", status=status.HTTP_400_BAD_REQUEST)
+
+
+
+
+
+
+
+def signin(request):
+    if request.user.is_authenticated:
+        return render(request, 'homepage.html')
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return redirect('/')
+        else:
+            form = AuthenticationForm(request.POST)
+            return render(request, 'signin.html', {'form': form})
+    else:
+        form = AuthenticationForm()
+        return render(request, 'signin.html', {'form': form})

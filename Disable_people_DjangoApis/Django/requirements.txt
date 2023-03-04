@@ -93,3 +93,9 @@ virtualenv==20.15.0
 wcwidth==0.2.6
 Werkzeug==2.2.2
 wsproto==1.2.0
+django-cors-headers==3.14.0
+django-jalali==6.0.1
+drf_extra_fields==3.4.1
+Pillow==9.4.0
+auth-token==0.0.3
+django-rest-authtoken==2.1.4
