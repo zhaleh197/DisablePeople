@@ -1,0 +1,10 @@
+.login{
+    /*
+      background: url('https://tailwindadmin.netlify.app/dist/images/login-new.jpeg');
+    */
+    background-color: brown;
+    background: url('http://bit.ly/2gPLxZ4');
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  
