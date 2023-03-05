@@ -9,7 +9,7 @@ import toast, { Toaster } from "react-hot-toast";
 
 const Login = () => {
   const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("kami2023");
+  const [password, setPassword] = useState("");
   const router = useRouter();
 
 
@@ -52,12 +52,13 @@ const Login = () => {
   return (
     <>
       <Toaster />
-        <div dir="rtl" className="h-screen font-sans login bg-cover text-black">
+      
+        <div dir="rtl" className="h-screen font-sans login bg-green-100 text-black">
           <div className="container mx-auto h-full flex flex-1 justify-center items-center">
             <div className="w-full max-w-lg">
               <div className="leading-loose">
                 <div
-                  className="max-w-sm m-4 p-10 bg-white bg-opacity-25 rounded shadow-xl"
+                  className="max-w-sm m-4 p-10 bg-white  rounded shadow-xl"
                 >
                   <p className=" font-medium text-center text-lg ">ورود</p>
                   <div className="">
@@ -69,7 +70,7 @@ const Login = () => {
                       className="w-full px-5 py-1 text-gray-700 bg-gray-300 rounded focus:outline-none focus:bg-white"
                       type="text"
                       id="email"
-                      placeholder="UserName"
+                      placeholder="نام کاربری"
                       aria-label="email"
                     />
                   </div>
@@ -80,7 +81,7 @@ const Login = () => {
                       className="w-full px-5 py-1 text-gray-700 bg-gray-300 rounded focus:outline-none focus:bg-white"
                       type="password"
                       id="password"
-                      placeholder="Password"
+                      placeholder="پسورد"
                       arial-label="password"
                     />
                   </div>
